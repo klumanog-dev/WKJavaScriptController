@@ -1,6 +1,6 @@
 import WebKit
 
-private var javaScriptControllerKey: UInt8 = 0
+@MainActor private var javaScriptControllerKey: UInt8 = 0
 
 public extension WKWebView {
     var javaScriptController: WKJavaScriptController? {
@@ -270,7 +270,7 @@ open class WKJavaScriptController: NSObject {
         }
     }
 
-    fileprivate func injectTo(_ userContentController: WKUserContentController) {
+    @MainActor fileprivate func injectTo(_ userContentController: WKUserContentController) {
         let userScripts = userContentController.userScripts.filter {
             !$0.source.hasPrefix(identifier)
         }
@@ -287,7 +287,7 @@ open class WKJavaScriptController: NSObject {
         isInjectRequired = false
     }
 
-    private func bridgeScript() -> WKUserScript {
+    @MainActor private func bridgeScript() -> WKUserScript {
         var source = """
             window.\(name) = {
                 \(ReserveKeyword.createUUID): function() {
