@@ -6,7 +6,7 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
-Pod::Spec.new do |spec|
+Pod::Spec.new do |s|
   s.name             = 'WKJavaScriptController'
   s.version          = '1.0.0'
   s.summary          = 'A lightweight JavaScript controller for WKWebView'
